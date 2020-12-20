@@ -28,7 +28,7 @@ public class DownloadTask {
     /// Internal: download task object
     fileprivate var download: URLSessionDownloadTask?
 
-    init(dID: String, source: URL, destination: URL, description: String = "") {
+    public init(dID: String, source: URL, destination: URL, description: String = "") {
         self.dID = dID
         self.source = source
         self.destination = destination
@@ -49,7 +49,7 @@ public class Downloader: NSObject, URLSessionDownloadDelegate {
     /// Delegate to inform about download changes.
     public weak var delegate: DownloaderDelegate?
 
-    override init() {
+    public override init() {
         super.init()
         self.tasks = [:]
         self.sessionConfig = URLSessionConfiguration.default
