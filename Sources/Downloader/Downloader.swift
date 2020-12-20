@@ -58,7 +58,7 @@ public class Downloader: NSObject, URLSessionDownloadDelegate {
 
     /// Start a new download process defined by a task instance.
     /// - Parameter task: download task instance
-    func start(_ task: DownloadTask) {
+    public func start(_ task: DownloadTask) {
         task.download = self.session.downloadTask(with: task.source)
         self.tasks[task.download!.taskIdentifier] = task
         task.download?.resume()
@@ -70,7 +70,7 @@ public class Downloader: NSObject, URLSessionDownloadDelegate {
 
     /// Cancel an active download process defined by a task instance.
     /// - Parameter task: download task instance
-    func cancel(_ task: DownloadTask) {
+    public func cancel(_ task: DownloadTask) {
         if let taskID = task.download?.taskIdentifier {
             self.tasks.removeValue(forKey: taskID)
             task.download?.cancel()
@@ -121,7 +121,7 @@ public class Downloader: NSObject, URLSessionDownloadDelegate {
         }
     }
 
-    func urlSession(_ session: URLSession, downloadTask: URLSessionTask, didCompleteWithError error: Error?) {
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionTask, didCompleteWithError error: Error?) {
         guard let task = self.tasks[downloadTask.taskIdentifier], let error = error else { return }
 
         self.tasks.removeValue(forKey: downloadTask.taskIdentifier)
