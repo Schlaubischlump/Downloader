@@ -9,7 +9,7 @@
 import Foundation
 
 /// Class to represent a specific download.
-public class DownloadTask {
+public class DownloadTask: NSObject {
     /// ID to identify a task when the delegate methods are called
     public var dID: String!
 
@@ -20,7 +20,7 @@ public class DownloadTask {
     public var destination: URL!
 
     /// Optional description of the download process
-    public var description: String!
+    public var desc: String!
 
     /// progress in percentage from 0.0 to 1.0
     public var progress: Double = 0.0
@@ -32,7 +32,8 @@ public class DownloadTask {
         self.dID = dID
         self.source = source
         self.destination = destination
-        self.description = description
+        self.desc = description
+        super.init()
     }
 }
 
