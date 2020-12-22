@@ -63,9 +63,9 @@ public class Downloader: NSObject, URLSessionDownloadDelegate {
         self.tasks[task.download!.taskIdentifier] = task
         task.download?.resume()
 
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             self.delegate?.downloadStarted(downloader: self, task: task)
-        }
+        //}
     }
 
     /// Cancel an active download process defined by a task instance.
@@ -86,9 +86,9 @@ public class Downloader: NSObject, URLSessionDownloadDelegate {
 
         task.progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
 
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             self.delegate?.downloadProgressChanged(downloader: self, task: task)
-        }
+        //}
     }
 
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
@@ -109,15 +109,15 @@ public class Downloader: NSObject, URLSessionDownloadDelegate {
             try? FileManager.default.removeItem(at: task.destination)
             try FileManager.default.moveItem(at: location, to: task.destination)
 
-            DispatchQueue.main.async {
+            //DispatchQueue.main.async {
                 task.progress = 1
                 self.delegate?.downloadProgressChanged(downloader: self, task: task)
                 self.delegate?.downloadFinished(downloader: self, task: task)
-            }
+            //}
         } catch let error {
-            DispatchQueue.main.async {
+            //DispatchQueue.main.async {
                 self.delegate?.downloadError(downloader: self, task: task, error: error)
-            }
+            //}
         }
     }
 
@@ -126,8 +126,8 @@ public class Downloader: NSObject, URLSessionDownloadDelegate {
 
         self.tasks.removeValue(forKey: downloadTask.taskIdentifier)
 
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             self.delegate?.downloadError(downloader: self, task: task, error: error)
-        }
+        //}
     }
 }
