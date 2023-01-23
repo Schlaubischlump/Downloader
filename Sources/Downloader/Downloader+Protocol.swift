@@ -9,7 +9,7 @@
 import Foundation
 
 /// Protocol to get informed about download changes.
-public protocol DownloaderDelegate: class {
+public protocol DownloaderDelegate: AnyObject {
     func downloadStarted(downloader: Downloader, task: DownloadTask)
     func downloadCanceled(downloader: Downloader, task: DownloadTask)
     func downloadFinished(downloader: Downloader, task: DownloadTask)

@@ -23,7 +23,7 @@ public class DownloadTask: NSObject {
     public var desc: String!
 
     /// progress in percentage from 0.0 to 1.0
-    public var progress: Double = 0.0
+    @objc dynamic public var progress: Double = 0.0
 
     /// Internal: download task object
     fileprivate var download: URLSessionDownloadTask?
